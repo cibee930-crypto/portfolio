@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>최유빈 포트폴리오 | Web Designer & Commerce Specialist</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* 웹폰트 'Paperozi' 100~900 정의 */
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
+      font-weight: 100;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
+      font-weight: 200;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2');
+      font-weight: 300;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+      font-weight: 800;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Paperozi';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+      font-weight: 900;
+      font-display: swap;
+    }
+
+    * {
+      font-family: 'Paperozi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }
+
+    body {
+      background-color: #F1F6F9;
+      background-image: radial-gradient(#CBDCEB 1.4px, transparent 1.4px);
+      background-size: 24px 24px;
+    }
+
+    .pastel-card {
+      border: 2.5px solid #6C8299;
+      box-shadow: 4px 6px 0px 0px #CBDCEB;
+    }
+    .pastel-header {
+      border: 2.5px solid #6C8299;
+      box-shadow: 0px 4px 0px 0px #CBDCEB;
+    }
+    .pastel-button {
+      border: 2px solid #6C8299;
+      box-shadow: 2px 3px 0px 0px #CBDCEB;
+      transition: all 0.15s ease-in-out;
+    }
+    .pastel-button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 4px 0px 0px #6C8299;
+    }
+    .pastel-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0px 0px 0px 0px #6C8299;
+    }
+
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #FFB5CF; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #F8FAFC; }
+  </style>
+</head>
+<body class="text-[#475569] min-h-screen py-6 px-4 md:px-8 pb-20">
+
+  <!-- ==================== 1. 상단 플로팅 헤더 (Contact 제거됨) ==================== -->
+  <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
+    <div class="pastel-header bg-white rounded-full px-5 py-3 md:px-6 md:py-3.5 flex items-center justify-between gap-4">
+      
+      <!-- 좌측 타이틀 -->
+      <div class="flex items-center">
+        <div>
+          <div class="font-extrabold text-sm md:text-base leading-tight tracking-tight text-[#334155]">최유빈 포트폴리오</div>
+          <div class="text-[11px] text-[#6C8299] font-bold tracking-tight">Web Designer & Commerce Specialist</div>
+        </div>
+      </div>
+
+      <!-- 우측 메뉴 네비게이션 -->
+      <nav class="flex items-center gap-6 text-xs font-bold text-[#5B8FB9]">
+        <a href="#section-profile" class="hover:text-[#FF7AA2] transition">소개 (Profile)</a>
+        <a href="#section-details" class="flex items-center gap-1.5 hover:text-[#FF7AA2] transition">
+          <span>상세페이지</span>
+          <span id="badge-detail-count" class="bg-[#FFE89E] text-[#6C8299] border-2 border-[#6C8299] px-2 py-0.5 rounded-full text-[10px] font-black">0</span>
+        </a>
+        <a href="#section-banners" class="flex items-center gap-1.5 hover:text-[#FF7AA2] transition">
+          <span>배너·기획전</span>
+          <span id="badge-banner-count" class="bg-[#FFD2E1] text-[#FF5A8D] border-2 border-[#6C8299] px-2 py-0.5 rounded-full text-[10px] font-black">0</span>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==================== 메인 콘텐츠 ==================== -->
+  <main class="max-w-5xl mx-auto space-y-12">
+
+    <!-- 2. 프로필 카드 -->
+    <section id="section-profile" class="pastel-card bg-white rounded-[32px] p-6 md:p-12 relative overflow-hidden">
+      <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
+        
+        <div class="flex-1 space-y-5 w-full">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug">
+              안녕하세요, <span class="text-[#5B8FB9]">최유빈</span>입니다.
+            </h1>
+          </div>
+          
+          <p id="ui-intro" class="text-xs md:text-sm leading-relaxed text-[#64748B] font-semibold whitespace-pre-line max-w-xl"></p>
+
+          <div class="pt-1 text-xs md:text-sm font-bold text-[#64748B] flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span id="ui-birth" class="font-mono text-[#334155]"></span>
+            <span class="text-[#CBD5E1]">/</span>
+            <span id="ui-email" class="cursor-pointer underline underline-offset-4 decoration-[#CBD5E1] text-[#5B8FB9] hover:text-[#FF7AA2] transition" onclick="copyText(this.innerText)"></span>
+            <span class="text-[#CBD5E1]">/</span>
+            <span id="ui-phone" class="cursor-pointer hover:underline text-[#334155] transition" onclick="copyText(this.innerText)"></span>
+          </div>
+        </div>
+
+        <!-- 프로필 사진 영역 -->
+        <div class="flex-shrink-0 flex flex-col items-center">
+          <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
+            RESUME & PROFILE
+          </div>
+
+          <div class="relative">
+            <div class="w-40 h-52 md:w-44 md:h-60 rounded-3xl bg-[#FFF3F8] border-2.5 border-[#6C8299] overflow-hidden flex items-center justify-center relative shadow-[3px_4px_0px_#CBDCEB]">
+              <img id="ui-profile-img" src="" alt="프로필 사진" class="w-full h-full object-cover hidden">
+              <div id="ui-profile-placeholder" class="text-center p-3 text-[#A0AEC0] flex flex-col items-center justify-center">
+                <i class="fa-regular fa-image text-3xl mb-1 text-[#FFB5CF]"></i>
+                <div class="text-xs font-black tracking-tight text-[#8395A7]">Profile Photo</div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-3 -right-2 bg-[#FFE89E] border-2 border-[#6C8299] px-3 py-1 rounded-md text-[11px] font-black text-[#5C4D26] shadow-[2px_2px_0px_#6C8299] rotate-[-4deg] select-none">
+              Web Designer ✦
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+
+      <!-- 주요 기술 -->
+      <div class="space-y-4">
+        <h2 class="font-bold text-sm md:text-base text-zinc-900 tracking-tight">주요 기술</h2>
+        <div id="ui-skills-container" class="flex flex-wrap gap-3 items-center pt-1"></div>
+      </div>
+
+      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+
+      <!-- 학력 및 경력 -->
+      <div class="space-y-6">
+        <h2 class="font-extrabold text-base md:text-lg text-zinc-900 tracking-tight">학력 및 경력</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div>
+            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-4">학력</h3>
+            <div id="ui-education" class="space-y-4"></div>
+          </div>
+
+          <div>
+            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-4">경력</h3>
+            <div id="ui-career" class="space-y-4"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+
+      <!-- 희망 직무 -->
+      <div class="flex items-center justify-between text-xs md:text-sm p-4 bg-[#F8FAFC] border-2 border-[#6C8299] rounded-2xl">
+        <span class="font-bold text-[#64748B]">희망 직무</span>
+        <span id="ui-target-job" class="font-black text-[#5B8FB9] bg-white border-2 border-[#6C8299] px-3.5 py-1.5 rounded-full shadow-[1px_2px_0px_#CBDCEB]"></span>
+      </div>
+    </section>
+
+    <!-- 3. 상세페이지 쇼케이스 섹션 -->
+    <section id="section-details" class="space-y-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-3.5 h-3.5 rounded-full bg-[#FFE89E] border-2 border-[#6C8299]"></span>
+          <h2 class="text-xl md:text-2xl font-black text-[#1E293B]">상세페이지 (Detail Pages)</h2>
+        </div>
+        <span class="text-xs text-[#94A3B8] font-bold">클릭 시 전체 묶음 컷 연속 열람</span>
+      </div>
+      <div id="ui-details-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+
+    <!-- 4. 배너 및 기획전 쇼케이스 섹션 -->
+    <section id="section-banners" class="space-y-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-3.5 h-3.5 rounded-full bg-[#FFD2E1] border-2 border-[#6C8299]"></span>
+          <h2 class="text-xl md:text-2xl font-black text-[#1E293B]">배너 & 기획전 (Promotion Banners)</h2>
+        </div>
+        <span class="text-xs text-[#94A3B8] font-bold">디스플레이 광고 및 프로모션 소재</span>
+      </div>
+      <div id="ui-banners-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </section>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="max-w-5xl mx-auto mt-20 text-center text-xs text-[#94A3B8] py-8 border-t-2 border-dashed border-[#CBDCEB]">
+    <p>© 2026 Choi Yubin. All rights reserved.</p>
+  </footer>
+
+  <!-- ==================== 묶음 이미지 뷰어 모달 ==================== -->
+  <div id="modal-viewer" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden flex flex-col items-center justify-center p-3 md:p-6" onclick="handleBackdropClick(event)">
+    <div class="pastel-card bg-white w-full max-w-3xl rounded-3xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div class="p-4 md:px-6 bg-[#F8FAFC] border-b-2 border-[#6C8299] flex items-center justify-between">
+        <div>
+          <span id="viewer-type" class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFE89E] text-[#6C8299] border border-[#6C8299]"></span>
+          <h3 id="viewer-title" class="font-extrabold text-base text-[#1E293B] mt-1"></h3>
+          <p id="viewer-count" class="text-xs text-[#6C8299] font-bold mt-0.5"></p>
+        </div>
+        <button onclick="closeViewer()" class="w-8 h-8 rounded-full border-2 border-[#6C8299] flex items-center justify-center text-sm font-black hover:bg-gray-100 transition">✕</button>
+      </div>
+
+      <div id="viewer-body" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scroll bg-[#F1F6F9]"></div>
+
+      <div class="p-3 bg-white border-t border-gray-200 text-center">
+        <p id="viewer-desc" class="text-xs text-gray-600 font-semibold"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 포트폴리오 데이터 & 스크립트 ==================== -->
+  <script>
+    /**
+     * [데이터 관리 가이드]
+     * images 폴더에 실제 이미지 파일들을 넣고 아래 경로와 이름을 맞춰주시면 됩니다.
+     */
+    const portfolioData = {
+      // 1. 프로필 정보
+      intro: "단순한 그래픽을 넘어 브랜드의 가치와 세일즈 동선을 고민하는 디자이너,\n대형 제휴 기획전과 프로모션 배너를 통해 브랜드 무드를 살리고\n고객 유입을 극대화하는 비주얼을 설계합니다.",
+      birth: "1997. 09. 30",
+      email: "cibee930@gmail.com",
+      phone: "010-4571-9405",
+
+      // 프로필 이미지 경로 (확장자가 .png인 경우 ./images/ProfileView.png 로 변경)
+      profileImg: "./images/ProfileView.jpg", 
+      targetJob: "웹 디자인 (Web Design & Commerce)",
+
+      // 2. 주요 기술
+      skills: [
+        { id: 1, name: "Ps", bg: "bg-[#001E36]", text: "text-[#31A8FF]" },
+        { id: 2, name: "Ai", bg: "bg-[#330000]", text: "text-[#FF9A00]" },
+        { id: 3, name: "Xd", bg: "bg-[#470137]", text: "text-[#FF61F6]" },
+        { id: 4, name: "Figma", icon: "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg", bg: "bg-white" },
+        { id: 5, name: "Notion", icon: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg", bg: "bg-white" },
+        { id: 6, name: "Gemini", icon: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", bg: "bg-[#EFF6FF]" }
+      ],
+
+      // 3. 학력 및 경력
+      education: [
+        { org: "전주 기전대학교", period: "2016. 02 ~ 2018. 01 (사회복지학과)" }
+      ],
+      career: [
+        { company: "토토실로 (1개월)", period: "2019. 03 ~ 2019. 04" },
+        { company: "(주)후림엔지니어링 (3개월)", period: "2019. 07 ~ 2019. 09" },
+        { company: "데코미 (1년 4개월)", period: "2021. 02 ~ 2022. 05" },
+        { company: "주식회사 제이엘(JL) (11개월)", period: "2022. 10 ~ 2023. 08" },
+        { company: "(주)동서인테리어(동서가구) (2년 7개월)", period: "2023. 08 ~ 2026. 02" }
+      ],
+
+      // 4. 프로젝트 작업물 목록 (예시 형식을 참고해 자유롭게 추가하세요)
+      projects: [
+        {
+          id: "detail_01",
+          type: "상세페이지",
+          title: "동서가구 프리미엄 소파 런칭 상세페이지",
+          desc: "디자인 기여도 100% / 브랜드 무드 정립 및 세일즈 포인트 시각화",
+          thumbnail: "./images/detail_01_thumb.jpg",
+          images: [
+            "./images/detail_01_cut1.jpg",
+            "./images/detail_01_cut2.jpg"
+          ]
+        },
+        {
+          id: "banner_01",
+          type: "배너·기획전",
+          title: "시즌 리빙 기획전 프로모션 배너 세트",
+          desc: "디자인 기여도 100% / 메인 롤링 배너 및 광고 배너 세트 제작",
+          thumbnail: "./images/banner_01_thumb.jpg",
+          images: [
+            "./images/banner_01_cut1.jpg"
+          ]
+        }
+      ]
+    };
+
+    // ==================== 렌더링 스크립트 ====================
+    function renderPortfolio() {
+      document.getElementById('ui-intro').innerText = portfolioData.intro;
+      document.getElementById('ui-birth').innerText = portfolioData.birth;
+      document.getElementById('ui-email').innerText = portfolioData.email;
+      document.getElementById('ui-phone').innerText = portfolioData.phone;
+      document.getElementById('ui-target-job').innerText = portfolioData.targetJob;
+
+      const profileImgEl = document.getElementById('ui-profile-img');
+      const placeholderEl = document.getElementById('ui-profile-placeholder');
+      if (portfolioData.profileImg) {
+        profileImgEl.src = portfolioData.profileImg;
+        profileImgEl.classList.remove('hidden');
+        placeholderEl.classList.add('hidden');
+      } else {
+        profileImgEl.classList.add('hidden');
+        placeholderEl.classList.remove('hidden');
+      }
+
+      document.getElementById('ui-education').innerHTML = portfolioData.education.map(item => `
+        <div class="space-y-1">
+          <div class="font-bold text-sm md:text-base text-zinc-900 tracking-tight leading-snug">${item.org}</div>
+          <div class="text-xs md:text-sm text-zinc-500 font-normal tracking-tight leading-relaxed">${item.period}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('ui-career').innerHTML = portfolioData.career.map(item => `
+        <div class="space-y-1">
+          <div class="font-bold text-sm md:text-base text-zinc-900 tracking-tight leading-snug">${item.company}</div>
+          <div class="text-xs md:text-sm text-zinc-500 font-normal tracking-tight leading-relaxed">${item.period}</div>
+        </div>
+      `).join('');
+
+      const skillsContainer = document.getElementById('ui-skills-container');
+      skillsContainer.innerHTML = '';
+      portfolioData.skills.forEach(skill => {
+        const item = document.createElement('div');
+        item.className = `w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center font-black relative select-none border-2 border-[#6C8299] shadow-[2px_2px_0px_#CBDCEB] ${skill.bg || 'bg-white'}`;
+
+        if (skill.icon) {
+          const img = document.createElement('img');
+          img.src = skill.icon;
+          img.alt = skill.name;
+          img.className = "w-6 h-6 md:w-7 md:h-7 object-contain";
+          item.appendChild(img);
+        } else {
+          const span = document.createElement('span');
+          span.className = `text-sm md:text-base font-black ${skill.text || 'text-[#1E293B]'}`;
+          span.innerText = skill.name;
+          item.appendChild(span);
+        }
+        skillsContainer.appendChild(item);
+      });
+
+      const detailsGrid = document.getElementById('ui-details-grid');
+      const bannersGrid = document.getElementById('ui-banners-grid');
+      detailsGrid.innerHTML = '';
+      bannersGrid.innerHTML = '';
+
+      const detailList = portfolioData.projects.filter(p => p.type === '상세페이지');
+      const bannerList = portfolioData.projects.filter(p => p.type === '배너·기획전');
+
+      document.getElementById('badge-detail-count').innerText = detailList.length;
+      document.getElementById('badge-banner-count').innerText = bannerList.length;
+
+      if (detailList.length === 0) {
+        detailsGrid.innerHTML = `<div class="col-span-full py-12 text-center text-[#94A3B8] text-xs font-bold border-2 border-dashed border-[#CBDCEB] rounded-3xl bg-white">등록된 상세페이지가 없습니다.</div>`;
+      } else {
+        detailList.forEach(proj => {
+          const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
+          const imgCount = proj.images ? proj.images.length : 0;
+
+          const card = document.createElement('div');
+          card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
+          card.onclick = () => openViewer(proj);
+          card.innerHTML = `
+            <div class="h-80 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
+              ${displayThumb ? `<img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover">` : `<span class="text-xs text-gray-400">이미지 없음</span>`}
+              ${imgCount > 1 ? `<div class="absolute bottom-3 right-3 bg-zinc-900/80 text-white text-[10px] font-black px-2.5 py-1 rounded-full backdrop-blur-sm shadow flex items-center gap-1"><i class="fa-regular fa-images"></i> <span>총 ${imgCount}장 묶음</span></div>` : ''}
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#FFE89E] text-[#6C8299] border border-[#6C8299] rounded-full">상세페이지</span>
+                <span class="text-[11px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 묶음 열람</span>
+              </div>
+              <h4 class="font-black text-base text-[#1E293B] mt-2">${proj.title}</h4>
+              <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium">${proj.desc}</p>
+            </div>
+          `;
+          detailsGrid.appendChild(card);
+        });
+      }
+
+      if (bannerList.length === 0) {
+        bannersGrid.innerHTML = `<div class="col-span-full py-12 text-center text-[#94A3B8] text-xs font-bold border-2 border-dashed border-[#CBDCEB] rounded-3xl bg-white">등록된 배너 작업물이 없습니다.</div>`;
+      } else {
+        bannerList.forEach(proj => {
+          const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
+          const imgCount = proj.images ? proj.images.length : 0;
+
+          const card = document.createElement('div');
+          card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
+          card.onclick = () => openViewer(proj);
+          card.innerHTML = `
+            <div class="h-48 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative">
+              ${displayThumb ? `<img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover">` : `<span class="text-xs text-gray-400">이미지 없음</span>`}
+              ${imgCount > 1 ? `<div class="absolute bottom-2 right-2 bg-zinc-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full backdrop-blur-sm shadow flex items-center gap-1"><i class="fa-regular fa-images"></i> <span>${imgCount}장</span></div>` : ''}
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#FFD2E1] text-[#E85B88] border border-[#6C8299] rounded-full">배너·기획전</span>
+                <span class="text-[10px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 보기</span>
+              </div>
+              <h4 class="font-black text-sm text-[#1E293B] mt-2">${proj.title}</h4>
+              <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium">${proj.desc}</p>
+            </div>
+          `;
+          bannersGrid.appendChild(card);
+        });
+      }
+    }
+
+    // ==================== 뷰어 모달 제어 ====================
+    function openViewer(proj) {
+      const imgs = proj.images && proj.images.length > 0 ? proj.images : (proj.thumbnail ? [proj.thumbnail] : []);
+      document.getElementById('viewer-type').innerText = proj.type;
+      document.getElementById('viewer-title').innerText = proj.title;
+      document.getElementById('viewer-desc').innerText = proj.desc;
+      document.getElementById('viewer-count').innerText = `총 ${imgs.length}장의 연결된 컷`;
+
+      const viewerBody = document.getElementById('viewer-body');
+      viewerBody.innerHTML = '';
+      imgs.forEach((imgUrl) => {
+        const imgEl = document.createElement('img');
+        imgEl.src = imgUrl;
+        imgEl.className = "w-full object-contain rounded-2xl border-2 border-[#6C8299] bg-white shadow-sm";
+        viewerBody.appendChild(imgEl);
+      });
+
+      document.getElementById('modal-viewer').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+      document.getElementById('modal-viewer').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === 'modal-viewer') closeViewer();
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeViewer();
+    });
+
+    function copyText(txt) {
+      navigator.clipboard.writeText(txt);
+      alert('복사되었습니다: ' + txt);
+    }
+
+    // 초기 실행
+    renderPortfolio();
+  </script>
+</body>
+</html>
