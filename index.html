@@ -99,7 +99,6 @@
       box-shadow: 0px 0px 0px 0px #6C8299;
     }
 
-    /* 팝업 전용 부드러운 스크롤바 */
     .custom-scroll {
       scrollbar-width: thin;
       scrollbar-color: #FFB5CF #F8FAFC;
@@ -111,11 +110,10 @@
 </head>
 <body class="text-[#475569] min-h-screen py-6 px-4 md:px-8 pb-20">
 
-  <!-- ==================== 1. 상단 플로팅 헤더 (3개 섹션 네비게이션) ==================== -->
+  <!-- ==================== 1. 상단 플로팅 헤더 ==================== -->
   <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
     <div class="pastel-header bg-white rounded-full px-4 py-3 md:px-6 md:py-3.5 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- 좌측 로고 & 타이틀 -->
       <div class="flex items-center">
         <div>
           <div class="font-extrabold text-sm md:text-base leading-tight tracking-tight text-[#334155]">최유빈 포트폴리오</div>
@@ -123,7 +121,6 @@
         </div>
       </div>
 
-      <!-- 우측 카테고리 네비게이션 & 카운트 뱃지 -->
       <nav class="flex items-center gap-3 md:gap-5 text-xs font-bold text-[#5B8FB9]">
         <a href="#section-profile" class="hover:text-[#FF7AA2] transition">소개</a>
         
@@ -153,7 +150,6 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[32px] p-6 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
-        <!-- 좌측 소개 및 인적사항 -->
         <div class="flex-1 space-y-5 w-full">
           <div>
             <h1 class="text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug">
@@ -172,7 +168,6 @@
           </div>
         </div>
 
-        <!-- 우측 프로필 사진 영역 -->
         <div class="flex-shrink-0 flex flex-col items-center">
           <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
             RESUME & PROFILE
@@ -243,7 +238,7 @@
       <div id="ui-details-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </section>
 
-    <!-- 3. 프로모션 기획전 섹션 (대형 캠페인) -->
+    <!-- 3. 프로모션 기획전 섹션 -->
     <section id="section-promotions" class="space-y-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -255,14 +250,14 @@
       <div id="ui-promotions-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- 4. 배너 컬렉션 섹션 -->
+    <!-- 4. 배너 컬렉션 섹션 (2열 구성) -->
     <section id="section-banners" class="space-y-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-3.5 h-3.5 rounded-full bg-[#FFD2E1] border-2 border-[#6C8299]"></span>
           <h2 class="text-xl md:text-2xl font-black text-[#1E293B]">배너 컬렉션 (Display Banners)</h2>
         </div>
-        <span class="text-xs text-[#94A3B8] font-bold">규격별 디스플레이 광고 소재 모음</span>
+        <span class="text-xs text-[#94A3B8] font-bold">규격별 디스플레이 & 전환 유도 배너 소재</span>
       </div>
       <div id="ui-banners-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </section>
@@ -332,7 +327,7 @@
         { company: "(주)동서인테리어(동서가구) (2년 7개월)", period: "2023. 08 ~ 2026. 02" }
       ],
 
-      // 4. 프로젝트 작업물 목록 (3개 카테고리 구성)
+      // 4. 프로젝트 작업물 목록
       projects: [
         // ---------------- [카테고리 1: 상세페이지] ----------------
         {
@@ -353,6 +348,20 @@
         },
 
         // ---------------- [카테고리 2: 프로모션 기획전] ----------------
+        {
+          id: "promo_ebay_landers",
+          type: "기획전",
+          title: "[이베이/지마켓·옥션] 동서가구 랜더스 쇼핑페스타 (랜더스데이)",
+          desc: "디자인 기여도 100% | 메인 3D 볼드 타이포그래픽 및 비주얼 연출, 모바일·PC 기획전 페이지 및 규격별 배너 패키지",
+          thumbnail: "./images/esmplus_01_bd0521_b.jpg",
+          images: [
+            "./images/esmplus_01_bd0521_m.jpg",
+            "./images/esmplus_01_bd0521_.jpg",
+            "./images/1920x400_pc(bd0521).jpg",
+            "./images/900x600_mo(bd0521).jpg",
+            "./images/202504_vip(bd0521).jpg"
+          ]
+        },
         {
           id: "promo_cj_home",
           type: "기획전",
@@ -405,6 +414,7 @@
         },
 
         // ---------------- [카테고리 3: 배너 컬렉션] ----------------
+        // 1) 제휴몰 & 시즌 프로모션 배너 모음
         {
           id: "banner_collection_01",
           type: "배너 컬렉션",
@@ -416,6 +426,24 @@
             "./images/231114_CJTOP.jpg",
             "./images/241112_eBay_sofa_top1.jpg",
             "./images/c_myshop_m_240322.jpg"
+          ]
+        },
+
+        // 2) 🌟 [신규 추가] 상품 바로가기(Target) & 빌보드 배너 세트
+        {
+          id: "banner_collection_02",
+          type: "배너 컬렉션",
+          title: "동서가구 타깃형 상품 바로가기 & 빌보드 배너 세트",
+          desc: "디자인 기여도 100% | GS SHOP 타깃 배너, 쇼핑몰 빌보드 배너, 카테고리 메인 및 모바일 기획전 배너 등 클릭 전환(CTA) 유도형 소재 제작",
+          thumbnail: "./images/빌보드배너_720x360.jpg",
+          images: [
+            "./images/빌보드배너_720x360.jpg",
+            "./images/카테고리_메인배너-541_414.jpg",
+            "./images/프로모션_모바일배너-598_160.jpg",
+            "./images/GS_target_20260120_.jpg",
+            "./images/GS_target_20260120_01.jpg",
+            "./images/GS_target_20260120_03.jpg",
+            "./images/GS_target_20260120_04.jpg"
           ]
         }
       ]
@@ -583,13 +611,12 @@
       const typeBadge = document.getElementById('viewer-type');
       typeBadge.innerText = proj.type;
       
-      // 타입별 뱃지 컬러
       if (proj.type === '상세페이지') {
         typeBadge.className = "text-[10px] font-black px-2.5 py-0.5 rounded-full border border-[#6C8299] bg-[#FFE89E] text-[#6C8299]";
         document.getElementById('viewer-count').innerText = `상세페이지 전체보기 (총 ${imgs.length}개 컷 연결)`;
       } else if (proj.type === '기획전') {
         typeBadge.className = "text-[10px] font-black px-2.5 py-0.5 rounded-full border border-[#6C8299] bg-[#BAE6FD] text-[#0369A1]";
-        document.getElementById('viewer-count').innerText = `대형 프로모션 기획전 전체 롱페이지`;
+        document.getElementById('viewer-count').innerText = `대형 프로모션 기획전 (총 ${imgs.length}개 구좌 연결)`;
       } else {
         typeBadge.className = "text-[10px] font-black px-2.5 py-0.5 rounded-full border border-[#6C8299] bg-[#FFD2E1] text-[#E85B88]";
         document.getElementById('viewer-count').innerText = `디스플레이 배너 컬렉션 (총 ${imgs.length}종 규격 소재)`;
@@ -602,14 +629,14 @@
       viewerBody.innerHTML = '';
       viewerBody.scrollTop = 0;
 
-      // 🌟 [배너 컬렉션] : 개별 배너가 각각 돋보이도록 카드형으로 정돈
+      // 1) 배너 컬렉션 : 개별 액자 카드 형태
       if (proj.type === '배너 컬렉션') {
         const bannerContainer = document.createElement('div');
         bannerContainer.className = "w-full max-w-2xl mx-auto space-y-6 flex flex-col items-center py-2";
 
         imgs.forEach((imgUrl) => {
           const imgCard = document.createElement('div');
-          imgCard.className = "w-full bg-white border-2 border-[#6C8299] rounded-2xl overflow-hidden shadow-sm p-2 flex items-center justify-center";
+          imgCard.className = "w-full bg-white border-2 border-[#6C8299] rounded-2xl overflow-hidden shadow-sm p-3 flex items-center justify-center";
           const imgEl = document.createElement('img');
           imgEl.src = imgUrl;
           imgEl.className = "w-full h-auto object-contain rounded-xl";
@@ -625,7 +652,7 @@
         });
         viewerBody.appendChild(bannerContainer);
       } 
-      // 🌟 [상세페이지 & 대형 기획전] : 단일 롱페이지 (분리선 없이 0px 밀착)
+      // 2) 상세페이지 & 기획전 : 분리선 없는 단일 롱페이지
       else {
         const continuousPage = document.createElement('div');
         continuousPage.className = "w-full max-w-2xl mx-auto bg-white border-2 border-[#6C8299] rounded-2xl overflow-hidden shadow-sm flex flex-col m-0 p-0";
