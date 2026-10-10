@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* 웹폰트 'Paperozi' 100~900 정의 */
+    /* 웹폰트 'Paperozi' 100~900 전체 정의 */
     @font-face {
       font-family: 'Paperozi';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
@@ -99,14 +99,19 @@
       box-shadow: 0px 0px 0px 0px #6C8299;
     }
 
-    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    /* 팝업 전용 부드러운 스크롤바 */
+    .custom-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: #FFB5CF #F8FAFC;
+    }
+    .custom-scroll::-webkit-scrollbar { width: 8px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #FFB5CF; border-radius: 4px; }
     .custom-scroll::-webkit-scrollbar-track { background: #F8FAFC; }
   </style>
 </head>
 <body class="text-[#475569] min-h-screen py-6 px-4 md:px-8 pb-20">
 
-  <!-- ==================== 1. 상단 플로팅 헤더 (Contact 제거됨) ==================== -->
+  <!-- ==================== 1. 상단 플로팅 헤더 ==================== -->
   <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
     <div class="pastel-header bg-white rounded-full px-5 py-3 md:px-6 md:py-3.5 flex items-center justify-between gap-4">
       
@@ -118,8 +123,8 @@
         </div>
       </div>
 
-      <!-- 우측 메뉴 네비게이션 -->
-      <nav class="flex items-center gap-6 text-xs font-bold text-[#5B8FB9]">
+      <!-- 우측 카테고리 네비게이션 & 카운트 뱃지 -->
+      <nav class="flex items-center gap-5 md:gap-7 text-xs font-bold text-[#5B8FB9]">
         <a href="#section-profile" class="hover:text-[#FF7AA2] transition">소개 (Profile)</a>
         <a href="#section-details" class="flex items-center gap-1.5 hover:text-[#FF7AA2] transition">
           <span>상세페이지</span>
@@ -141,6 +146,7 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[32px] p-6 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
+        <!-- 좌측 소개 및 인적사항 -->
         <div class="flex-1 space-y-5 w-full">
           <div>
             <h1 class="text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug">
@@ -159,7 +165,7 @@
           </div>
         </div>
 
-        <!-- 프로필 사진 영역 -->
+        <!-- 우측 프로필 사진 영역 -->
         <div class="flex-shrink-0 flex flex-col items-center">
           <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
             RESUME & PROFILE
@@ -167,7 +173,7 @@
 
           <div class="relative">
             <div class="w-40 h-52 md:w-44 md:h-60 rounded-3xl bg-[#FFF3F8] border-2.5 border-[#6C8299] overflow-hidden flex items-center justify-center relative shadow-[3px_4px_0px_#CBDCEB]">
-              <img id="ui-profile-img" src="" alt="프로필 사진" class="w-full h-full object-cover hidden">
+              <img id="ui-profile-img" src="" alt="프로필 사진" class="w-full h-full object-cover hidden" onerror="handleProfileError()">
               <div id="ui-profile-placeholder" class="text-center p-3 text-[#A0AEC0] flex flex-col items-center justify-center">
                 <i class="fa-regular fa-image text-3xl mb-1 text-[#FFB5CF]"></i>
                 <div class="text-xs font-black tracking-tight text-[#8395A7]">Profile Photo</div>
@@ -225,7 +231,7 @@
           <span class="w-3.5 h-3.5 rounded-full bg-[#FFE89E] border-2 border-[#6C8299]"></span>
           <h2 class="text-xl md:text-2xl font-black text-[#1E293B]">상세페이지 (Detail Pages)</h2>
         </div>
-        <span class="text-xs text-[#94A3B8] font-bold">클릭 시 전체 묶음 컷 연속 열람</span>
+        <span class="text-xs text-[#94A3B8] font-bold">클릭 시 전체 페이지 열람</span>
       </div>
       <div id="ui-details-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </section>
@@ -249,41 +255,40 @@
     <p>© 2026 Choi Yubin. All rights reserved.</p>
   </footer>
 
-  <!-- ==================== 묶음 이미지 뷰어 모달 ==================== -->
-  <div id="modal-viewer" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden flex flex-col items-center justify-center p-3 md:p-6" onclick="handleBackdropClick(event)">
-    <div class="pastel-card bg-white w-full max-w-3xl rounded-3xl overflow-hidden flex flex-col max-h-[92vh]">
-      <div class="p-4 md:px-6 bg-[#F8FAFC] border-b-2 border-[#6C8299] flex items-center justify-between">
+  <!-- ==================== 매끄러운 단일 롱페이지 뷰어 모달 ==================== -->
+  <div id="modal-viewer" style="display: none;" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 md:p-6" onclick="handleBackdropClick(event)">
+    <div class="pastel-card bg-white w-full max-w-3xl rounded-3xl overflow-hidden flex flex-col h-[90vh] shadow-2xl">
+      
+      <!-- 헤더 (고정) -->
+      <div class="flex-shrink-0 p-4 md:px-6 bg-[#F8FAFC] border-b-2 border-[#6C8299] flex items-center justify-between">
         <div>
           <span id="viewer-type" class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-[#FFE89E] text-[#6C8299] border border-[#6C8299]"></span>
           <h3 id="viewer-title" class="font-extrabold text-base text-[#1E293B] mt-1"></h3>
           <p id="viewer-count" class="text-xs text-[#6C8299] font-bold mt-0.5"></p>
         </div>
-        <button onclick="closeViewer()" class="w-8 h-8 rounded-full border-2 border-[#6C8299] flex items-center justify-center text-sm font-black hover:bg-gray-100 transition">✕</button>
+        <button onclick="closeViewer()" class="w-8 h-8 rounded-full border-2 border-[#6C8299] flex items-center justify-center text-sm font-black hover:bg-gray-100 transition" aria-label="닫기">✕</button>
       </div>
 
-      <div id="viewer-body" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scroll bg-[#F1F6F9]"></div>
+      <!-- 본문 스크롤 영역 -->
+      <div id="viewer-body" tabindex="0" class="flex-1 min-h-0 overflow-y-auto p-2 sm:p-4 md:p-6 custom-scroll bg-[#F1F6F9] outline-none" style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch;"></div>
 
-      <div class="p-3 bg-white border-t border-gray-200 text-center">
+      <!-- 푸터 (고정) -->
+      <div class="flex-shrink-0 p-3 bg-white border-t border-gray-200 text-center">
         <p id="viewer-desc" class="text-xs text-gray-600 font-semibold"></p>
       </div>
+
     </div>
   </div>
 
   <!-- ==================== 포트폴리오 데이터 & 스크립트 ==================== -->
   <script>
-    /**
-     * [데이터 관리 가이드]
-     * images 폴더에 실제 이미지 파일들을 넣고 아래 경로와 이름을 맞춰주시면 됩니다.
-     */
     const portfolioData = {
       // 1. 프로필 정보
       intro: "단순한 그래픽을 넘어 브랜드의 가치와 세일즈 동선을 고민하는 디자이너,\n대형 제휴 기획전과 프로모션 배너를 통해 브랜드 무드를 살리고\n고객 유입을 극대화하는 비주얼을 설계합니다.",
       birth: "1997. 09. 30",
       email: "cibee930@gmail.com",
       phone: "010-4571-9405",
-
-      // 프로필 이미지 경로 (확장자가 .png인 경우 ./images/ProfileView.png 로 변경)
-      profileImg: "./images/ProfileView.jpg", 
+      profileImg: "./images/ProfileView.jpg",
       targetJob: "웹 디자인 (Web Design & Commerce)",
 
       // 2. 주요 기술
@@ -308,33 +313,65 @@
         { company: "(주)동서인테리어(동서가구) (2년 7개월)", period: "2023. 08 ~ 2026. 02" }
       ],
 
-      // 4. 프로젝트 작업물 목록 (예시 형식을 참고해 자유롭게 추가하세요)
+      // 4. 프로젝트 작업물 목록
       projects: [
+        // [상세페이지]
         {
-          id: "detail_01",
+          id: "detail_bed_01",
           type: "상세페이지",
-          title: "동서가구 프리미엄 소파 런칭 상세페이지",
-          desc: "디자인 기여도 100% / 브랜드 무드 정립 및 세일즈 포인트 시각화",
-          thumbnail: "./images/detail_01_thumb.jpg",
+          title: "동서가구, 편백나무 LED 수납 호텔 침대",
+          desc: "편백나무 원목 질감 연출 및 LED 조명·수납 기능 디테일 컷, 규격(SS/K)·배송 안내 인포그래픽 제작",
+          thumbnail: "./images/CSL_73_bed_01.jpg",
           images: [
-            "./images/detail_01_cut1.jpg",
-            "./images/detail_01_cut2.jpg"
+            "./images/CSL_73_bed_01.jpg",
+            "./images/CSL_73_bed_02.gif",
+            "./images/CSL_73_bed_03.jpg",
+            "./images/CSL_73_ss_spec_F.jpg",
+            "./images/CSL_73_k_spec_F.jpg",
+            "./images/CSL_73_bed_05.jpg",
+            "./images/CSL_del_445566.jpg"
           ]
         },
+
+        // [배너·기획전 1] 240806_CJ
         {
           id: "banner_01",
           type: "배너·기획전",
-          title: "시즌 리빙 기획전 프로모션 배너 세트",
-          desc: "디자인 기여도 100% / 메인 롤링 배너 및 광고 배너 세트 제작",
-          thumbnail: "./images/banner_01_thumb.jpg",
+          title: "[CJ온스타일] 동서가구 썸머 시즌 프로모션 기획전",
+          desc: "디자인 기여도 100% | 여름 시즌 무드 연출, 메인 키비주얼 및 혜택·카테고리 딜 블록 설계",
+          thumbnail: "./images/240806_CJ_b.jpg", // 🌟 지정 썸네일 연결
           images: [
-            "./images/banner_01_cut1.jpg"
+            "./images/240806_CJ.jpg" // 클릭 시 열리는 전체 롱페이지
+          ]
+        },
+
+        // [배너·기획전 2] 240909_CJ
+        {
+          id: "banner_02",
+          type: "배너·기획전",
+          title: "[CJ온스타일] 가을 BEST 특가전 TOP 100 기획전",
+          desc: "디자인 기여도 100% | 가을·추석 톤앤매너 비주얼 기획, 베스트 셀링 상품 중심 레이아웃",
+          thumbnail: "./images/240909_CJ_b.jpg", // 🌟 지정 썸네일 연결
+          images: [
+            "./images/240909_CJ.jpg" // 클릭 시 열리는 전체 롱페이지
+          ]
+        },
+
+        // [배너·기획전 3] gs_251231_01
+        {
+          id: "banner_03",
+          type: "배너·기획전",
+          title: "[GS SHOP] 2026 새해특가 단독 쿠폰 프로모션 기획전",
+          desc: "디자인 기여도 100% | 3D 풍선 타이포 그래픽 제작, 쿠폰 티켓형 혜택존 및 단독 상품 라인업 구성",
+          thumbnail: "./images/gs_251231_01_b.jpg", // 🌟 지정 썸네일 연결
+          images: [
+            "./images/gs_251231_01.jpg" // 클릭 시 열리는 전체 롱페이지
           ]
         }
       ]
     };
 
-    // ==================== 렌더링 스크립트 ====================
+    // ==================== 렌더링 로직 ====================
     function renderPortfolio() {
       document.getElementById('ui-intro').innerText = portfolioData.intro;
       document.getElementById('ui-birth').innerText = portfolioData.birth;
@@ -342,6 +379,7 @@
       document.getElementById('ui-phone').innerText = portfolioData.phone;
       document.getElementById('ui-target-job').innerText = portfolioData.targetJob;
 
+      // 프로필 사진 처리
       const profileImgEl = document.getElementById('ui-profile-img');
       const placeholderEl = document.getElementById('ui-profile-placeholder');
       if (portfolioData.profileImg) {
@@ -349,10 +387,10 @@
         profileImgEl.classList.remove('hidden');
         placeholderEl.classList.add('hidden');
       } else {
-        profileImgEl.classList.add('hidden');
-        placeholderEl.classList.remove('hidden');
+        handleProfileError();
       }
 
+      // 학력 렌더링
       document.getElementById('ui-education').innerHTML = portfolioData.education.map(item => `
         <div class="space-y-1">
           <div class="font-bold text-sm md:text-base text-zinc-900 tracking-tight leading-snug">${item.org}</div>
@@ -360,6 +398,7 @@
         </div>
       `).join('');
 
+      // 경력 렌더링
       document.getElementById('ui-career').innerHTML = portfolioData.career.map(item => `
         <div class="space-y-1">
           <div class="font-bold text-sm md:text-base text-zinc-900 tracking-tight leading-snug">${item.company}</div>
@@ -367,6 +406,7 @@
         </div>
       `).join('');
 
+      // 기술 스택 렌더링
       const skillsContainer = document.getElementById('ui-skills-container');
       skillsContainer.innerHTML = '';
       portfolioData.skills.forEach(skill => {
@@ -388,6 +428,7 @@
         skillsContainer.appendChild(item);
       });
 
+      // 프로젝트 분기
       const detailsGrid = document.getElementById('ui-details-grid');
       const bannersGrid = document.getElementById('ui-banners-grid');
       detailsGrid.innerHTML = '';
@@ -399,6 +440,7 @@
       document.getElementById('badge-detail-count').innerText = detailList.length;
       document.getElementById('badge-banner-count').innerText = bannerList.length;
 
+      // 1) 상세페이지 카드 렌더링
       if (detailList.length === 0) {
         detailsGrid.innerHTML = `<div class="col-span-full py-12 text-center text-[#94A3B8] text-xs font-bold border-2 border-dashed border-[#CBDCEB] rounded-3xl bg-white">등록된 상세페이지가 없습니다.</div>`;
       } else {
@@ -410,23 +452,36 @@
           card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
           card.onclick = () => openViewer(proj);
           card.innerHTML = `
-            <div class="h-80 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
-              ${displayThumb ? `<img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover">` : `<span class="text-xs text-gray-400">이미지 없음</span>`}
-              ${imgCount > 1 ? `<div class="absolute bottom-3 right-3 bg-zinc-900/80 text-white text-[10px] font-black px-2.5 py-1 rounded-full backdrop-blur-sm shadow flex items-center gap-1"><i class="fa-regular fa-images"></i> <span>총 ${imgCount}장 묶음</span></div>` : ''}
+            <div class="h-72 md:h-80 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
+              ${displayThumb ? `
+                <img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover" onerror="handleImageError(this, '${proj.title}')">
+                <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
+                  <i class="fa-regular fa-image text-3xl mb-1 text-[#CBDCEB]"></i>
+                  <span class="text-xs font-extrabold text-[#6C8299] mt-1">${proj.title}</span>
+                  <span class="text-[10px] text-[#94A3B8] mt-0.5 font-bold">이미지 파일을 확인해 주세요</span>
+                </div>
+              ` : `
+                <div class="flex flex-col items-center justify-center text-center p-4 text-[#8395A7]">
+                  <i class="fa-regular fa-image text-3xl mb-1 text-[#CBDCEB]"></i>
+                  <span class="text-xs font-extrabold text-[#6C8299] mt-1">${proj.title}</span>
+                </div>
+              `}
+              ${imgCount > 1 ? `<div class="absolute bottom-3 right-3 bg-zinc-900/80 text-white text-[10px] font-black px-2.5 py-1 rounded-full backdrop-blur-sm shadow flex items-center gap-1"><i class="fa-regular fa-images"></i> <span>전체 페이지 열람</span></div>` : ''}
             </div>
             <div class="p-5">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#FFE89E] text-[#6C8299] border border-[#6C8299] rounded-full">상세페이지</span>
-                <span class="text-[11px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 묶음 열람</span>
+                <span class="text-[11px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 전체 열람</span>
               </div>
               <h4 class="font-black text-base text-[#1E293B] mt-2">${proj.title}</h4>
-              <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium">${proj.desc}</p>
+              <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed">${proj.desc}</p>
             </div>
           `;
           detailsGrid.appendChild(card);
         });
       }
 
+      // 2) 배너 카드 렌더링
       if (bannerList.length === 0) {
         bannersGrid.innerHTML = `<div class="col-span-full py-12 text-center text-[#94A3B8] text-xs font-bold border-2 border-dashed border-[#CBDCEB] rounded-3xl bg-white">등록된 배너 작업물이 없습니다.</div>`;
       } else {
@@ -438,8 +493,19 @@
           card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
           card.onclick = () => openViewer(proj);
           card.innerHTML = `
-            <div class="h-48 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative">
-              ${displayThumb ? `<img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover">` : `<span class="text-xs text-gray-400">이미지 없음</span>`}
+            <div class="h-44 md:h-48 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative">
+              ${displayThumb ? `
+                <img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover" onerror="handleImageError(this, '${proj.title}')">
+                <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
+                  <i class="fa-regular fa-image text-2xl mb-1 text-[#CBDCEB]"></i>
+                  <span class="text-xs font-extrabold text-[#6C8299] mt-1">${proj.title}</span>
+                </div>
+              ` : `
+                <div class="flex flex-col items-center justify-center text-center p-4 text-[#8395A7]">
+                  <i class="fa-regular fa-image text-2xl mb-1 text-[#CBDCEB]"></i>
+                  <span class="text-xs font-extrabold text-[#6C8299] mt-1">${proj.title}</span>
+                </div>
+              `}
               ${imgCount > 1 ? `<div class="absolute bottom-2 right-2 bg-zinc-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full backdrop-blur-sm shadow flex items-center gap-1"><i class="fa-regular fa-images"></i> <span>${imgCount}장</span></div>` : ''}
             </div>
             <div class="p-4">
@@ -462,24 +528,46 @@
       document.getElementById('viewer-type').innerText = proj.type;
       document.getElementById('viewer-title').innerText = proj.title;
       document.getElementById('viewer-desc').innerText = proj.desc;
-      document.getElementById('viewer-count').innerText = `총 ${imgs.length}장의 연결된 컷`;
+      document.getElementById('viewer-count').innerText = `${proj.type} 전체보기 (총 ${imgs.length}개 컷 연결)`;
 
       const viewerBody = document.getElementById('viewer-body');
       viewerBody.innerHTML = '';
+      viewerBody.scrollTop = 0;
+
+      // 단일 롱페이지 래퍼 (분리선 없이 밀착 연결)
+      const continuousPage = document.createElement('div');
+      continuousPage.className = "w-full max-w-2xl mx-auto bg-white border-2 border-[#6C8299] rounded-2xl overflow-hidden shadow-sm flex flex-col m-0 p-0";
+
       imgs.forEach((imgUrl) => {
         const imgEl = document.createElement('img');
         imgEl.src = imgUrl;
-        imgEl.className = "w-full object-contain rounded-2xl border-2 border-[#6C8299] bg-white shadow-sm";
-        viewerBody.appendChild(imgEl);
+        imgEl.className = "block w-full h-auto m-0 p-0 border-0 rounded-none object-contain align-top";
+        imgEl.onerror = function() {
+          this.outerHTML = `
+            <div class="w-full py-12 bg-white border-b-2 border-dashed border-[#CBDCEB] text-center text-[#94A3B8] font-bold text-xs leading-normal">
+              <i class="fa-regular fa-image text-2xl mb-1 text-[#CBDCEB] block"></i>
+              이미지 파일(${imgUrl})을 찾을 수 없습니다.<br>
+              images 폴더에 해당 파일명이 있는지 확인해 주세요.
+            </div>
+          `;
+        };
+        continuousPage.appendChild(imgEl);
       });
 
-      document.getElementById('modal-viewer').classList.remove('hidden');
+      viewerBody.appendChild(continuousPage);
+
+      const modal = document.getElementById('modal-viewer');
+      modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        viewerBody.focus();
+      }, 50);
     }
 
     function closeViewer() {
-      document.getElementById('modal-viewer').classList.add('hidden');
-      document.body.style.overflow = 'auto';
+      document.getElementById('modal-viewer').style.display = 'none';
+      document.body.style.overflow = '';
     }
 
     function handleBackdropClick(e) {
@@ -489,6 +577,21 @@
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeViewer();
     });
+
+    function handleProfileError() {
+      const img = document.getElementById('ui-profile-img');
+      const placeholder = document.getElementById('ui-profile-placeholder');
+      if (img) img.classList.add('hidden');
+      if (placeholder) placeholder.classList.remove('hidden');
+    }
+
+    function handleImageError(imgEl, title) {
+      imgEl.classList.add('hidden');
+      if (imgEl.nextElementSibling) {
+        imgEl.nextElementSibling.classList.remove('hidden');
+        imgEl.nextElementSibling.classList.add('flex');
+      }
+    }
 
     function copyText(txt) {
       navigator.clipboard.writeText(txt);
