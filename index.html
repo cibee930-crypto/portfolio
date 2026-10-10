@@ -114,14 +114,16 @@
   <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
     <div class="pastel-header bg-white rounded-full px-4 py-3 md:px-6 md:py-3.5 flex flex-wrap items-center justify-between gap-3">
       
-      <div class="flex items-center">
+      <!-- 좌측 타이틀: 둥근 모서리 안쪽으로 30px 이동 + 상하 간격 10px 최적화 -->
+      <div class="flex items-center pl-3 sm:pl-5 md:pl-[30px]">
         <div>
           <div class="font-extrabold text-sm md:text-base leading-tight tracking-tight text-[#334155]">최유빈 포트폴리오</div>
-          <div class="text-[11px] text-[#6C8299] font-bold tracking-tight">Web Designer & Commerce Specialist</div>
+          <div class="text-[11px] text-[#6C8299] font-bold tracking-tight mt-[8px] md:mt-[10px]">Web Designer & Commerce Specialist</div>
         </div>
       </div>
 
-      <nav class="flex items-center gap-3 md:gap-5 text-xs font-bold text-[#5B8FB9]">
+      <!-- 우측 카테고리 네비게이션 & 카운트 뱃지 -->
+      <nav class="flex items-center gap-3 md:gap-5 text-xs font-bold text-[#5B8FB9] pr-1 md:pr-3">
         <a href="#section-profile" class="hover:text-[#FF7AA2] transition">소개</a>
         
         <a href="#section-details" class="flex items-center gap-1 hover:text-[#FF7AA2] transition">
@@ -150,6 +152,7 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[32px] p-6 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
+        <!-- 좌측 소개 및 인적사항 -->
         <div class="flex-1 space-y-5 w-full">
           <div>
             <h1 class="text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug">
@@ -168,7 +171,8 @@
           </div>
         </div>
 
-        <div class="flex-shrink-0 flex flex-col items-center">
+        <!-- 우측 프로필 사진 영역 (중앙 방향으로 70px 들여쓰기: md:mr-[70px]) -->
+        <div class="flex-shrink-0 flex flex-col items-center md:mr-[70px]">
           <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
             RESUME & PROFILE
           </div>
@@ -348,6 +352,19 @@
         },
 
         // ---------------- [카테고리 2: 프로모션 기획전] ----------------
+        // 1) 한샘몰 신학기 특가전
+        {
+          id: "promo_hanssem_school",
+          type: "기획전",
+          title: "[한샘몰] 동서가구 두근두근 신학기 특가전",
+          desc: "디자인 기여도 100% | 신학기 시즌 일러스트 아트워크 및 통통 튀는 입체 타이포그래피 연출, PC & MO 혜택존 설계",
+          thumbnail: "./images/han_202403_event_PC_01.jpg",
+          images: [
+            "./images/han_202403_event_PC_01.jpg",
+            "./images/han_202403_event_MO_01.jpg"
+          ]
+        },
+        // 2) 이베이 랜더스 쇼핑페스타 (랜더스데이)
         {
           id: "promo_ebay_landers",
           type: "기획전",
@@ -362,6 +379,7 @@
             "./images/202504_vip(bd0521).jpg"
           ]
         },
+        // 3) CJ온스타일 홈리빙페어
         {
           id: "promo_cj_home",
           type: "기획전",
@@ -372,6 +390,7 @@
             "./images/250926_cj_top.jpg"
           ]
         },
+        // 4) CJ온스타일 썸머 시즌
         {
           id: "promo_cj_summer",
           type: "기획전",
@@ -382,6 +401,7 @@
             "./images/240806_CJ.jpg"
           ]
         },
+        // 5) CJ온스타일 가을 BEST
         {
           id: "promo_cj_fall",
           type: "기획전",
@@ -392,6 +412,7 @@
             "./images/240909_CJ.jpg"
           ]
         },
+        // 6) GS SHOP 2026 새해특가
         {
           id: "promo_gs_newyear",
           type: "기획전",
@@ -402,6 +423,7 @@
             "./images/gs_251231_01.jpg"
           ]
         },
+        // 7) 이지웰 2026 새해맞이
         {
           id: "promo_ezwel_newyear",
           type: "기획전",
@@ -429,7 +451,7 @@
           ]
         },
 
-        // 2) 🌟 [신규 추가] 상품 바로가기(Target) & 빌보드 배너 세트
+        // 2) 상품 바로가기(Target) & 빌보드 배너 세트
         {
           id: "banner_collection_02",
           type: "배너 컬렉션",
