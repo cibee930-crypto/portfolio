@@ -114,7 +114,7 @@
   <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
     <div class="pastel-header bg-white rounded-full px-4 py-3 md:px-6 md:py-3.5 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- 좌측 타이틀: 안쪽 30px 들여쓰기 + 상하 간격 10px 최적화 -->
+      <!-- 좌측 타이틀 -->
       <div class="flex items-center pl-3 sm:pl-5 md:pl-[30px]">
         <div>
           <div class="font-extrabold text-sm md:text-base leading-tight tracking-tight text-[#334155]">최유빈 포트폴리오</div>
@@ -169,7 +169,7 @@
           </div>
         </div>
 
-        <!-- 우측 프로필 사진 영역 (중앙 방향으로 70px 들여쓰기) -->
+        <!-- 우측 프로필 사진 영역 -->
         <div class="flex-shrink-0 flex flex-col items-center md:mr-[70px]">
           <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
             RESUME & PROFILE
@@ -252,16 +252,16 @@
       <div id="ui-promotions-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- 4. 배너 컬렉션 섹션 (2열 구성) -->
+    <!-- 4. 배너 컬렉션 섹션 (3열 그리드) -->
     <section id="section-banners" class="space-y-5">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-3.5 h-3.5 rounded-full bg-[#FFD2E1] border-2 border-[#6C8299]"></span>
           <h2 class="text-xl md:text-2xl font-black text-[#1E293B]">배너 컬렉션 (Display Banners)</h2>
         </div>
-        <span class="text-xs text-[#94A3B8] font-bold">규격별 디스플레이 & 전환 유도 배너 소재</span>
+        <span class="text-xs text-[#94A3B8] font-bold">규격별 디스플레이 & VIP 프로모션 배너 소재</span>
       </div>
-      <div id="ui-banners-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      <div id="ui-banners-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
   </main>
@@ -349,8 +349,8 @@
           ]
         },
 
-        // ---------------- [카테고리 2: 프로모션 기획전] ----------------
-        // 🌟 [수정 완료] 한샘몰 블랙페스타 대형 기획전 (han_202511_event_b.jpg 썸네일 적용)
+        // ---------------- [카테고리 2: 프로모션 기획전 (총 9종)] ----------------
+        // 1) 한샘몰 블랙페스타
         {
           id: "promo_hanssem_blackfesta",
           type: "기획전",
@@ -366,7 +366,7 @@
             "./images/han_202601_event_04.jpg"
           ]
         },
-        // 1) 한샘몰 신학기 특가전
+        // 2) 한샘몰 신학기 특가전
         {
           id: "promo_hanssem_school",
           type: "기획전",
@@ -378,7 +378,21 @@
             "./images/han_202403_event_MO_01.jpg"
           ]
         },
-        // 2) 이베이 랜더스 쇼핑페스타 (랜더스데이)
+        // 3) 11번가 시즌 프로모션 기획전 시리즈
+        {
+          id: "promo_11st_series",
+          type: "기획전",
+          title: "[11번가] 동서가구 시즌 프로모션 기획전 시리즈 (봄·추석·겨울·연말)",
+          desc: "디자인 기여도 100% | 11번가 모바일 UI 규격 최적화, 4계절 시즌 테마(봄맞이·추석·겨울·연말)별 키비주얼 아트워크 및 프로모션 딜 구좌 바리에이션",
+          thumbnail: "./images/2510_11st_b.jpg",
+          images: [
+            "./images/2502_11st_MO_top.jpg",
+            "./images/2503_11st_MO_top.jpg",
+            "./images/2510_11st_mo.jpg",
+            "./images/2511_12st_MO.jpg"
+          ]
+        },
+        // 4) 이베이 랜더스 쇼핑페스타 (랜더스데이)
         {
           id: "promo_ebay_landers",
           type: "기획전",
@@ -393,7 +407,7 @@
             "./images/202504_vip(bd0521).jpg"
           ]
         },
-        // 3) CJ온스타일 홈리빙페어
+        // 5) CJ온스타일 홈리빙페어
         {
           id: "promo_cj_home",
           type: "기획전",
@@ -404,7 +418,7 @@
             "./images/250926_cj_top.jpg"
           ]
         },
-        // 4) CJ온스타일 썸머 시즌
+        // 6) CJ온스타일 썸머 시즌
         {
           id: "promo_cj_summer",
           type: "기획전",
@@ -415,7 +429,7 @@
             "./images/240806_CJ.jpg"
           ]
         },
-        // 5) CJ온스타일 가을 BEST
+        // 7) CJ온스타일 가을 BEST
         {
           id: "promo_cj_fall",
           type: "기획전",
@@ -426,7 +440,7 @@
             "./images/240909_CJ.jpg"
           ]
         },
-        // 6) GS SHOP 2026 새해특가
+        // 8) GS SHOP 2026 새해특가
         {
           id: "promo_gs_newyear",
           type: "기획전",
@@ -437,7 +451,7 @@
             "./images/gs_251231_01.jpg"
           ]
         },
-        // 7) 이지웰 2026 새해맞이
+        // 9) 이지웰 2026 새해맞이
         {
           id: "promo_ezwel_newyear",
           type: "기획전",
@@ -449,7 +463,7 @@
           ]
         },
 
-        // ---------------- [카테고리 3: 배너 컬렉션] ----------------
+        // ---------------- [카테고리 3: 배너 컬렉션 (총 3종 모음)] ----------------
         // 1) 제휴몰 & 시즌 프로모션 배너 모음
         {
           id: "banner_collection_01",
@@ -480,6 +494,27 @@
             "./images/GS_target_20260120_01.jpg",
             "./images/GS_target_20260120_03.jpg",
             "./images/GS_target_20260120_04.jpg"
+          ]
+        },
+
+        // 3) 🌟 [신규 추가] G마켓·옥션 월간 기획전 & VIP 프로모션 배너 세트
+        {
+          id: "banner_collection_03",
+          type: "배너 컬렉션",
+          title: "G마켓·옥션 월간 기획전 & VIP 프로모션 배너 세트",
+          desc: "디자인 기여도 100% | G마켓·옥션 빅페스타, 추석맞이 핫추픽, 빡세일, 블랙프라이데이, 메리세일 등 시즌별 VIP 쿠폰 헤더 및 월간 기획전 배너 모음",
+          thumbnail: "./images/251114_790x470.jpg", // 🌟 월간 기획전 와이드 썸네일
+          images: [
+            "./images/251114_790x470.jpg",
+            "./images/251114_790x570.jpg",
+            "./images/202502_vip(171053).jpg",
+            "./images/202510_vip(4d87da).jpg",
+            "./images/202510_vip1(4d87da).jpg",
+            "./images/202510_vip2(4d87da).jpg",
+            "./images/202512_vip_1지마켓.jpg",
+            "./images/202512_vip_1옥션.jpg",
+            "./images/202512_vip_2지마켓.jpg",
+            "./images/202512_vip_2옥션.jpg"
           ]
         }
       ]
@@ -612,7 +647,7 @@
         promotionsGrid.appendChild(card);
       });
 
-      // 3) 배너 컬렉션 카드 렌더링
+      // 3) 배너 컬렉션 카드 렌더링 (3열 그리드 카드)
       bannerList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
