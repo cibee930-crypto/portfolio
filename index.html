@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,6 +69,7 @@
 
     * {
       font-family: 'Paperozi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      word-break: keep-all;
     }
 
     body {
@@ -99,6 +100,7 @@
       box-shadow: 0px 0px 0px 0px #6C8299;
     }
 
+    /* 팝업 전용 부드러운 스크롤바 */
     .custom-scroll {
       scrollbar-width: thin;
       scrollbar-color: #FFB5CF #F8FAFC;
@@ -106,35 +108,85 @@
     .custom-scroll::-webkit-scrollbar { width: 8px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #FFB5CF; border-radius: 4px; }
     .custom-scroll::-webkit-scrollbar-track { background: #F8FAFC; }
+
+    /* ==================== 키네틱 3단 웨이브 애니메이션 ==================== */
+    @keyframes kineticWaveTop {
+      0%, 100% {
+        transform: translate(-14px, -10px) skewX(-6deg);
+        opacity: 0.35;
+      }
+      50% {
+        transform: translate(14px, -3px) skewX(5deg);
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes kineticWaveCenter {
+      0%, 100% {
+        transform: translate(0px, 0px) scale(1) skewX(2deg);
+      }
+      50% {
+        transform: translate(-5px, 3px) scale(1.02) skewX(-2deg);
+      }
+    }
+
+    @keyframes kineticWaveBottom {
+      0%, 100% {
+        transform: translate(14px, 10px) skewX(5deg);
+        opacity: 0.35;
+      }
+      50% {
+        transform: translate(-14px, 3px) skewX(-6deg);
+        opacity: 0.7;
+      }
+    }
+
+    .anim-wave-top {
+      animation: kineticWaveTop 5.2s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .anim-wave-center {
+      animation: kineticWaveCenter 4.4s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .anim-wave-bottom {
+      animation: kineticWaveBottom 5.8s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
   </style>
 </head>
-<body class="text-[#475569] min-h-screen py-6 px-4 md:px-8 pb-20">
+<body class="text-[#475569] min-h-screen py-4 md:py-6 px-3 sm:px-4 md:px-8 pb-20">
 
-  <!-- ==================== 1. 상단 플로팅 헤더 ==================== -->
-  <header class="max-w-5xl mx-auto sticky top-4 z-40 mb-10">
-    <div class="pastel-header bg-white rounded-full px-4 py-3 md:px-6 md:py-3.5 flex flex-wrap items-center justify-between gap-3">
+  <!-- ==================== 1. 상단 헤더 (스크롤 시 따라오지 않는 기본 배치) ==================== -->
+  <header class="max-w-5xl mx-auto mb-6 md:mb-8">
+    <div class="pastel-header bg-white rounded-[26px] md:rounded-full px-4 py-3 sm:px-6 md:px-8 md:py-3.5 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 shadow-sm">
       
       <!-- 좌측 타이틀 -->
-      <div class="flex items-center pl-3 sm:pl-5 md:pl-[30px]">
+      <div class="flex items-center text-center md:text-left md:pl-[10px]">
         <div>
           <div class="font-extrabold text-sm md:text-base leading-tight tracking-tight text-[#334155]">최유빈 포트폴리오</div>
-          <div class="text-[11px] text-[#6C8299] font-bold tracking-tight mt-[8px] md:mt-[10px]">Web Designer & Commerce Specialist</div>
+          <div class="text-[11px] text-[#6C8299] font-bold tracking-tight mt-1 md:mt-2">Web Designer & Commerce Specialist</div>
         </div>
       </div>
 
-      <!-- 우측 카테고리 네비게이션 & 카운트 뱃지 -->
-      <nav class="flex items-center gap-3 md:gap-5 text-xs font-bold text-[#5B8FB9] pr-1 md:pr-3">
-        <a href="#section-details" class="flex items-center gap-1 hover:text-[#FF7AA2] transition">
+      <!-- 우측 카테고리 네비게이션 -->
+      <nav class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 md:gap-5 text-xs font-bold text-[#5B8FB9] w-full md:w-auto md:pr-2">
+        <a href="#section-details" class="flex items-center gap-1 hover:text-[#FF7AA2] transition whitespace-nowrap">
           <span>상세페이지</span>
           <span id="badge-detail-count" class="bg-[#FFE89E] text-[#6C8299] border-2 border-[#6C8299] px-2 py-0.2 rounded-full text-[10px] font-black">0</span>
         </a>
 
-        <a href="#section-promotions" class="flex items-center gap-1 hover:text-[#FF7AA2] transition">
+        <a href="#section-promotions" class="flex items-center gap-1 hover:text-[#FF7AA2] transition whitespace-nowrap">
           <span>프로모션 기획전</span>
           <span id="badge-promotion-count" class="bg-[#BAE6FD] text-[#0369A1] border-2 border-[#6C8299] px-2 py-0.2 rounded-full text-[10px] font-black">0</span>
         </a>
 
-        <a href="#section-banners" class="flex items-center gap-1 hover:text-[#FF7AA2] transition">
+        <a href="#section-banners" class="flex items-center gap-1 hover:text-[#FF7AA2] transition whitespace-nowrap">
           <span>배너 컬렉션</span>
           <span id="badge-banner-count" class="bg-[#FFD2E1] text-[#E85B88] border-2 border-[#6C8299] px-2 py-0.2 rounded-full text-[10px] font-black">0</span>
         </a>
@@ -144,26 +196,83 @@
   </header>
 
   <!-- ==================== 메인 콘텐츠 ==================== -->
-  <main class="max-w-5xl mx-auto space-y-14">
+  <main class="max-w-5xl mx-auto space-y-8 md:space-y-10">
+
+    <!-- 0. 히어로 표지 섹션 -->
+    <section id="section-hero" class="relative py-4 sm:py-6 md:py-8 flex flex-col items-center justify-center text-center select-none overflow-visible">
+      
+      <div class="relative w-full max-w-3xl px-2 flex items-center justify-center">
+        
+        <svg class="w-full h-auto max-h-[170px] sm:max-h-[200px] md:max-h-[230px] overflow-visible drop-shadow-[0_8px_16px_rgba(37,99,235,0.1)]" 
+             viewBox="0 0 760 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- 상단 레이어: 블루 아웃라인 텍스트 -->
+          <g class="anim-wave-top">
+            <text x="380" y="85" 
+                  fill="none" 
+                  stroke="#2563EB" 
+                  stroke-width="1.8" 
+                  font-family="'Paperozi', -apple-system, sans-serif" 
+                  font-weight="900" 
+                  font-size="84" 
+                  letter-spacing="-1.5" 
+                  text-anchor="middle">
+              PORTFOLIO
+            </text>
+          </g>
+
+          <!-- 중앙 레이어: 볼드 솔리드 블루 텍스트 -->
+          <g class="anim-wave-center">
+            <text x="380" y="112" 
+                  fill="#2563EB" 
+                  font-family="'Paperozi', -apple-system, sans-serif" 
+                  font-weight="900" 
+                  font-size="88" 
+                  letter-spacing="-1.8" 
+                  text-anchor="middle">
+              PORTFOLIO
+            </text>
+          </g>
+
+          <!-- 하단 레이어: 블루 아웃라인 텍스트 -->
+          <g class="anim-wave-bottom">
+            <text x="380" y="138" 
+                  fill="none" 
+                  stroke="#2563EB" 
+                  stroke-width="1.8" 
+                  font-family="'Paperozi', -apple-system, sans-serif" 
+                  font-weight="900" 
+                  font-size="84" 
+                  letter-spacing="-1.5" 
+                  text-anchor="middle">
+              PORTFOLIO
+            </text>
+          </g>
+
+        </svg>
+
+      </div>
+
+    </section>
 
     <!-- 1. 프로필 카드 -->
-    <section id="section-profile" class="pastel-card bg-white rounded-[32px] p-6 md:p-12 relative overflow-hidden">
+    <section id="section-profile" class="pastel-card bg-white rounded-[28px] md:rounded-[32px] p-5 sm:p-7 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
-        <!-- 좌측 소개 및 인적사항 -->
-        <div class="flex-1 space-y-5 w-full">
+        <!-- 좌측 소개 및 인적사항 (md:pt-[25px]로 프로필 사진 카드 상단과 수평 일치) -->
+        <div class="flex-1 space-y-4 md:space-y-5 w-full md:pt-[25px]">
           <div>
-            <h1 class="text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug break-keep">
               안녕하세요, <span class="text-[#5B8FB9]">최유빈</span>입니다.
             </h1>
           </div>
           
-          <p id="ui-intro" class="text-xs md:text-sm leading-relaxed text-[#64748B] font-semibold whitespace-pre-line max-w-xl"></p>
+          <p id="ui-intro" class="text-xs md:text-sm leading-relaxed text-[#64748B] font-semibold whitespace-pre-line max-w-xl break-keep"></p>
 
-          <div class="pt-1 text-xs md:text-sm font-bold text-[#64748B] flex flex-wrap items-center gap-x-3 gap-y-1">
+          <div class="pt-1 text-xs md:text-sm font-bold text-[#64748B] flex flex-wrap items-center gap-x-2.5 sm:gap-x-3 gap-y-1">
             <span id="ui-birth" class="font-mono text-[#334155]"></span>
             <span class="text-[#CBD5E1]">/</span>
-            <span id="ui-email" class="cursor-pointer underline underline-offset-4 decoration-[#CBD5E1] text-[#5B8FB9] hover:text-[#FF7AA2] transition" onclick="copyText(this.innerText)"></span>
+            <span id="ui-email" class="cursor-pointer underline underline-offset-4 decoration-[#CBDCEB] text-[#5B8FB9] hover:text-[#FF7AA2] transition" onclick="copyText(this.innerText)"></span>
             <span class="text-[#CBD5E1]">/</span>
             <span id="ui-phone" class="cursor-pointer hover:underline text-[#334155] transition" onclick="copyText(this.innerText)"></span>
           </div>
@@ -171,12 +280,12 @@
 
         <!-- 우측 프로필 사진 영역 -->
         <div class="flex-shrink-0 flex flex-col items-center md:mr-[70px]">
-          <div class="text-[11px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-2.5 text-center select-none">
+          <div class="text-[11px] leading-[15px] font-black tracking-widest text-[#94A3B8] font-mono uppercase mb-[10px] text-center select-none">
             RESUME & PROFILE
           </div>
 
           <div class="relative">
-            <div class="w-40 h-52 md:w-44 md:h-60 rounded-3xl bg-[#FFF3F8] border-2.5 border-[#6C8299] overflow-hidden flex items-center justify-center relative shadow-[3px_4px_0px_#CBDCEB]">
+            <div class="w-36 h-48 sm:w-40 sm:h-52 md:w-44 md:h-60 rounded-3xl bg-[#FFF3F8] border-2.5 border-[#6C8299] overflow-hidden flex items-center justify-center relative shadow-[3px_4px_0px_#CBDCEB]">
               <img id="ui-profile-img" src="" alt="프로필 사진" class="w-full h-full object-cover hidden" onerror="handleProfileError()">
               <div id="ui-profile-placeholder" class="text-center p-3 text-[#A0AEC0] flex flex-col items-center justify-center">
                 <i class="fa-regular fa-image text-3xl mb-1 text-[#FFB5CF]"></i>
@@ -192,34 +301,34 @@
 
       </div>
 
-      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+      <hr class="my-8 md:my-10 border-2 border-dashed border-[#CBDCEB]">
 
       <!-- 주요 기술 -->
       <div class="space-y-4">
         <h2 class="font-bold text-sm md:text-base text-zinc-900 tracking-tight">주요 기술</h2>
-        <div id="ui-skills-container" class="flex flex-wrap gap-3 items-center pt-1"></div>
+        <div id="ui-skills-container" class="flex flex-wrap gap-2.5 md:gap-3 items-center pt-1"></div>
       </div>
 
-      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+      <hr class="my-8 md:my-10 border-2 border-dashed border-[#CBDCEB]">
 
       <!-- 학력 및 경력 -->
       <div class="space-y-6">
         <h2 class="font-extrabold text-base md:text-lg text-zinc-900 tracking-tight">학력 및 경력</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
           <div>
-            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-4">학력</h3>
+            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-3 md:mb-4">학력</h3>
             <div id="ui-education" class="space-y-4"></div>
           </div>
 
           <div>
-            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-4">경력</h3>
+            <h3 class="text-xs md:text-sm font-semibold text-zinc-500 tracking-tight mb-3 md:mb-4">경력</h3>
             <div id="ui-career" class="space-y-4"></div>
           </div>
         </div>
       </div>
 
-      <hr class="my-10 border-2 border-dashed border-[#CBDCEB]">
+      <hr class="my-8 md:my-10 border-2 border-dashed border-[#CBDCEB]">
 
       <!-- 희망 직무 -->
       <div class="flex items-center justify-between text-xs md:text-sm p-4 bg-[#F8FAFC] border-2 border-[#6C8299] rounded-2xl">
@@ -229,7 +338,7 @@
     </section>
 
     <!-- 2. 상세페이지 섹션 -->
-    <section id="section-details" class="space-y-5">
+    <section id="section-details" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-3.5 h-3.5 rounded-full bg-[#FFE89E] border-2 border-[#6C8299]"></span>
@@ -241,7 +350,7 @@
     </section>
 
     <!-- 3. 프로모션 기획전 섹션 -->
-    <section id="section-promotions" class="space-y-5">
+    <section id="section-promotions" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-3.5 h-3.5 rounded-full bg-[#BAE6FD] border-2 border-[#6C8299]"></span>
@@ -252,8 +361,8 @@
       <div id="ui-promotions-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- 4. 배너 컬렉션 섹션 (3열 그리드) -->
-    <section id="section-banners" class="space-y-5">
+    <!-- 4. 배너 컬렉션 섹션 -->
+    <section id="section-banners" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="w-3.5 h-3.5 rounded-full bg-[#FFD2E1] border-2 border-[#6C8299]"></span>
@@ -348,9 +457,22 @@
             "./images/CSL_del_445566.jpg"
           ]
         },
+        {
+          id: "detail_bed_02",
+          type: "상세페이지",
+          title: "동서가구, 고무나무 원목 패브릭 쿠션 LED 수납 침대",
+          desc: "내추럴 원목 감성과 패브릭 헤드쿠션 조화, 3단계 조절 무드등·콘센트 기능 연출 및 수납 서랍 규격(SPEC) 인포그래픽 제작",
+          thumbnail: "./images/CSL_76_bed_01.jpg",
+          images: [
+            "./images/CSL_76_bed_01.jpg",
+            "./images/CSL_76_bed_02.jpg",
+            "./images/CSL_76_bed_03.jpg",
+            "./images/645387_1.jpg",
+            "./images/CSL_76_bed_05.jpg"
+          ]
+        },
 
-        // ---------------- [카테고리 2: 프로모션 기획전 (총 9종)] ----------------
-        // 1) 한샘몰 블랙페스타
+        // ---------------- [카테고리 2: 프로모션 기획전] ----------------
         {
           id: "promo_hanssem_blackfesta",
           type: "기획전",
@@ -366,7 +488,6 @@
             "./images/han_202601_event_04.jpg"
           ]
         },
-        // 2) 한샘몰 신학기 특가전
         {
           id: "promo_hanssem_school",
           type: "기획전",
@@ -378,7 +499,6 @@
             "./images/han_202403_event_MO_01.jpg"
           ]
         },
-        // 3) 11번가 시즌 프로모션 기획전 시리즈
         {
           id: "promo_11st_series",
           type: "기획전",
@@ -392,7 +512,6 @@
             "./images/2511_12st_MO.jpg"
           ]
         },
-        // 4) 이베이 랜더스 쇼핑페스타 (랜더스데이)
         {
           id: "promo_ebay_landers",
           type: "기획전",
@@ -407,7 +526,6 @@
             "./images/202504_vip(bd0521).jpg"
           ]
         },
-        // 5) CJ온스타일 홈리빙페어
         {
           id: "promo_cj_home",
           type: "기획전",
@@ -418,7 +536,6 @@
             "./images/250926_cj_top.jpg"
           ]
         },
-        // 6) CJ온스타일 썸머 시즌
         {
           id: "promo_cj_summer",
           type: "기획전",
@@ -429,7 +546,6 @@
             "./images/240806_CJ.jpg"
           ]
         },
-        // 7) CJ온스타일 가을 BEST
         {
           id: "promo_cj_fall",
           type: "기획전",
@@ -440,7 +556,6 @@
             "./images/240909_CJ.jpg"
           ]
         },
-        // 8) GS SHOP 2026 새해특가
         {
           id: "promo_gs_newyear",
           type: "기획전",
@@ -451,7 +566,6 @@
             "./images/gs_251231_01.jpg"
           ]
         },
-        // 9) 이지웰 2026 새해맞이
         {
           id: "promo_ezwel_newyear",
           type: "기획전",
@@ -463,8 +577,7 @@
           ]
         },
 
-        // ---------------- [카테고리 3: 배너 컬렉션 (총 3종 모음)] ----------------
-        // 1) 제휴몰 & 시즌 프로모션 배너 모음
+        // ---------------- [카테고리 3: 배너 컬렉션] ----------------
         {
           id: "banner_collection_01",
           type: "배너 컬렉션",
@@ -478,8 +591,6 @@
             "./images/c_myshop_m_240322.jpg"
           ]
         },
-
-        // 2) 상품 바로가기(Target) & 빌보드 배너 세트
         {
           id: "banner_collection_02",
           type: "배너 컬렉션",
@@ -496,14 +607,12 @@
             "./images/GS_target_20260120_04.jpg"
           ]
         },
-
-        // 3) 🌟 [신규 추가] G마켓·옥션 월간 기획전 & VIP 프로모션 배너 세트
         {
           id: "banner_collection_03",
           type: "배너 컬렉션",
           title: "G마켓·옥션 월간 기획전 & VIP 프로모션 배너 세트",
           desc: "디자인 기여도 100% | G마켓·옥션 빅페스타, 추석맞이 핫추픽, 빡세일, 블랙프라이데이, 메리세일 등 시즌별 VIP 쿠폰 헤더 및 월간 기획전 배너 모음",
-          thumbnail: "./images/251114_790x470.jpg", // 🌟 월간 기획전 와이드 썸네일
+          thumbnail: "./images/251114_790x470.jpg",
           images: [
             "./images/251114_790x470.jpg",
             "./images/251114_790x570.jpg",
@@ -577,7 +686,7 @@
         skillsContainer.appendChild(item);
       });
 
-      // 프로젝트 3개 분기
+      // 프로젝트 분기
       const detailsGrid = document.getElementById('ui-details-grid');
       const promotionsGrid = document.getElementById('ui-promotions-grid');
       const bannersGrid = document.getElementById('ui-banners-grid');
@@ -647,7 +756,7 @@
         promotionsGrid.appendChild(card);
       });
 
-      // 3) 배너 컬렉션 카드 렌더링 (3열 그리드 카드)
+      // 3) 배너 컬렉션 카드 렌더링
       bannerList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
@@ -700,7 +809,6 @@
       viewerBody.innerHTML = '';
       viewerBody.scrollTop = 0;
 
-      // 1) 배너 컬렉션 : 개별 액자 카드 형태
       if (proj.type === '배너 컬렉션') {
         const bannerContainer = document.createElement('div');
         bannerContainer.className = "w-full max-w-2xl mx-auto space-y-6 flex flex-col items-center py-2";
@@ -723,7 +831,6 @@
         });
         viewerBody.appendChild(bannerContainer);
       } 
-      // 2) 상세페이지 & 기획전 : 분리선 없는 단일 롱페이지
       else {
         const continuousPage = document.createElement('div');
         continuousPage.className = "w-full max-w-2xl mx-auto bg-white border-2 border-[#6C8299] rounded-2xl overflow-hidden shadow-sm flex flex-col m-0 p-0";
