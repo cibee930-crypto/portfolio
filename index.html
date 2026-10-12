@@ -162,7 +162,7 @@
 </head>
 <body class="text-[#475569] min-h-screen py-4 md:py-6 px-3 sm:px-4 md:px-8 pb-20">
 
-  <!-- ==================== 1. 상단 헤더 (스크롤 시 따라오지 않는 기본 배치) ==================== -->
+  <!-- ==================== 1. 상단 헤더 ==================== -->
   <header class="max-w-5xl mx-auto mb-6 md:mb-8">
     <div class="pastel-header bg-white rounded-[26px] md:rounded-full px-4 py-3 sm:px-6 md:px-8 md:py-3.5 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 shadow-sm">
       
@@ -259,7 +259,7 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[28px] md:rounded-[32px] p-5 sm:p-7 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
-        <!-- 좌측 소개 및 인적사항 (md:pt-[25px]로 프로필 사진 카드 상단과 수평 일치) -->
+        <!-- 좌측 소개 및 인적사항 -->
         <div class="flex-1 space-y-4 md:space-y-5 w-full md:pt-[25px]">
           <div>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug break-keep">
@@ -337,7 +337,7 @@
       </div>
     </section>
 
-    <!-- 2. 상세페이지 섹션 -->
+    <!-- 2. 상세페이지 섹션 (3열 그리드로 확장) -->
     <section id="section-details" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -346,7 +346,7 @@
         </div>
         <span class="text-xs text-[#94A3B8] font-bold">클릭 시 단일 롱페이지 연속 열람</span>
       </div>
-      <div id="ui-details-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      <div id="ui-details-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- 3. 프로모션 기획전 섹션 -->
@@ -440,7 +440,8 @@
 
       // 4. 프로젝트 작업물 목록
       projects: [
-        // ---------------- [카테고리 1: 상세페이지] ----------------
+        // ---------------- [카테고리 1: 상세페이지 (총 3종)] ----------------
+        // 1) 편백나무 호텔 침대
         {
           id: "detail_bed_01",
           type: "상세페이지",
@@ -457,6 +458,7 @@
             "./images/CSL_del_445566.jpg"
           ]
         },
+        // 2) 고무나무 원목 패브릭 쿠션 LED 수납 침대
         {
           id: "detail_bed_02",
           type: "상세페이지",
@@ -471,8 +473,26 @@
             "./images/CSL_76_bed_05.jpg"
           ]
         },
+        // 3) 🌟 [신규 추가] 고무나무 원목 수납형 흙·돌침대 & 돌소파
+        {
+          id: "detail_stone_sofa_03",
+          type: "상세페이지",
+          title: "동서가구, 고무나무 원목 수납형 흙·돌침대 & 돌소파",
+          desc: "고무나무 원목과 전통 온열 보료의 조화, 프레임 수납 기능 및 싱글·퀸·소파 라인업별 디테일 컷과 규격 인포그래픽 제작",
+          thumbnail: "./images/LVT_1005_6_04.jpg",
+          images: [
+            "./images/LVT_1005_6_01.jpg",
+            "./images/LVT_1005_6_02.jpg",
+            "./images/LVT_1005_6C_08.jpg",
+            "./images/LVT_1005_6_03.jpg",
+            "./images/LVT_1005_6_04.jpg",
+            "./images/LVT_1005_6_05.jpg",
+            "./images/LVT_1005_6_06.jpg",
+            "./images/645674_1.jpg"
+          ]
+        },
 
-        // ---------------- [카테고리 2: 프로모션 기획전] ----------------
+        // ---------------- [카테고리 2: 프로모션 기획전 (총 9종)] ----------------
         {
           id: "promo_hanssem_blackfesta",
           type: "기획전",
@@ -577,7 +597,7 @@
           ]
         },
 
-        // ---------------- [카테고리 3: 배너 컬렉션] ----------------
+        // ---------------- [카테고리 3: 배너 컬렉션 (총 3종)] ----------------
         {
           id: "banner_collection_01",
           type: "배너 컬렉션",
@@ -686,7 +706,7 @@
         skillsContainer.appendChild(item);
       });
 
-      // 프로젝트 분기
+      // 프로젝트 3개 분기
       const detailsGrid = document.getElementById('ui-details-grid');
       const promotionsGrid = document.getElementById('ui-promotions-grid');
       const bannersGrid = document.getElementById('ui-banners-grid');
@@ -702,7 +722,7 @@
       document.getElementById('badge-promotion-count').innerText = promoList.length;
       document.getElementById('badge-banner-count').innerText = bannerList.length;
 
-      // 1) 상세페이지 카드 렌더링
+      // 1) 상세페이지 카드 렌더링 (3열)
       detailList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
@@ -710,7 +730,7 @@
         card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
         card.onclick = () => openViewer(proj);
         card.innerHTML = `
-          <div class="h-72 md:h-80 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
+          <div class="h-64 md:h-72 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
             <img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover" onerror="handleImageError(this, '${proj.title}')">
             <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
               <i class="fa-regular fa-image text-3xl mb-1 text-[#CBDCEB]"></i>
@@ -723,14 +743,14 @@
               <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#FFE89E] text-[#6C8299] border border-[#6C8299] rounded-full">상세페이지</span>
               <span class="text-[11px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 전체 열람</span>
             </div>
-            <h4 class="font-black text-base text-[#1E293B] mt-2">${proj.title}</h4>
-            <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed">${proj.desc}</p>
+            <h4 class="font-black text-base text-[#1E293B] mt-2 line-clamp-1">${proj.title}</h4>
+            <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed line-clamp-2">${proj.desc}</p>
           </div>
         `;
         detailsGrid.appendChild(card);
       });
 
-      // 2) 프로모션 기획전 카드 렌더링
+      // 2) 프로모션 기획전 카드 렌더링 (3열)
       promoList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const card = document.createElement('div');
@@ -749,14 +769,14 @@
               <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#BAE6FD] text-[#0369A1] border border-[#6C8299] rounded-full">프로모션 기획전</span>
               <span class="text-[10px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 기획전 보기</span>
             </div>
-            <h4 class="font-black text-sm text-[#1E293B] mt-2 leading-snug">${proj.title}</h4>
+            <h4 class="font-black text-sm text-[#1E293B] mt-2 leading-snug line-clamp-1">${proj.title}</h4>
             <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed line-clamp-2">${proj.desc}</p>
           </div>
         `;
         promotionsGrid.appendChild(card);
       });
 
-      // 3) 배너 컬렉션 카드 렌더링
+      // 3) 배너 컬렉션 카드 렌더링 (3열)
       bannerList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
@@ -777,8 +797,8 @@
               <span class="text-[10px] font-black px-2.5 py-0.5 bg-[#FFD2E1] text-[#E85B88] border border-[#6C8299] rounded-full">배너 컬렉션</span>
               <span class="text-[10px] font-bold text-[#5B8FB9] flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> 전체 열람</span>
             </div>
-            <h4 class="font-black text-sm text-[#1E293B] mt-2">${proj.title}</h4>
-            <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed">${proj.desc}</p>
+            <h4 class="font-black text-sm text-[#1E293B] mt-2 line-clamp-1">${proj.title}</h4>
+            <p class="text-xs text-[#64748B] mt-1 whitespace-pre-line font-medium leading-relaxed line-clamp-2">${proj.desc}</p>
           </div>
         `;
         bannersGrid.appendChild(card);
