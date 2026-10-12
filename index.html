@@ -259,7 +259,7 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[28px] md:rounded-[32px] p-5 sm:p-7 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
-        <!-- 좌측 소개 및 인적사항 -->
+        <!-- 좌측 소개 및 인적사항 (md:pt-[25px]로 프로필 사진 카드 상단과 수평 일치) -->
         <div class="flex-1 space-y-4 md:space-y-5 w-full md:pt-[25px]">
           <div>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug break-keep">
@@ -337,7 +337,7 @@
       </div>
     </section>
 
-    <!-- 2. 상세페이지 섹션 (3열 그리드로 확장) -->
+    <!-- 2. 상세페이지 섹션 (3열 그리드 & 4:3 황금비율 고정) -->
     <section id="section-details" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -440,7 +440,7 @@
 
       // 4. 프로젝트 작업물 목록
       projects: [
-        // ---------------- [카테고리 1: 상세페이지 (총 3종)] ----------------
+        // ---------------- [카테고리 1: 상세페이지 (총 3종 - 대표 메인 컷 적용)] ----------------
         // 1) 편백나무 호텔 침대
         {
           id: "detail_bed_01",
@@ -467,28 +467,28 @@
           thumbnail: "./images/CSL_76_bed_01.jpg",
           images: [
             "./images/CSL_76_bed_01.jpg",
-            "./images/CSL_76_bed_02.jpg",
+            "./images/CSL_76_bed_02.gif",
             "./images/CSL_76_bed_03.jpg",
             "./images/645387_1.jpg",
             "./images/CSL_76_bed_05.jpg"
           ]
         },
-        // 3) 🌟 [신규 추가] 고무나무 원목 수납형 흙·돌침대 & 돌소파
+        // 3) 고무나무 원목 수납형 흙·돌침대 & 돌소파
         {
           id: "detail_stone_sofa_03",
           type: "상세페이지",
           title: "동서가구, 고무나무 원목 수납형 흙·돌침대 & 돌소파",
           desc: "고무나무 원목과 전통 온열 보료의 조화, 프레임 수납 기능 및 싱글·퀸·소파 라인업별 디테일 컷과 규격 인포그래픽 제작",
-          thumbnail: "./images/LVT_1005_6_04.jpg",
+          thumbnail: "./images/LVT_1005_6_01.jpg",
           images: [
             "./images/LVT_1005_6_01.jpg",
             "./images/LVT_1005_6_02.jpg",
-            "./images/LVT_1005_6C_08.jpg",
-            "./images/LVT_1005_6_03.jpg",
-            "./images/LVT_1005_6_04.jpg",
+            "./images/LVT_1005_6_03.gif",
+            "./images/LVT_1005_6_04.gif",
             "./images/LVT_1005_6_05.jpg",
             "./images/LVT_1005_6_06.jpg",
-            "./images/645674_1.jpg"
+            "./images/645674_1.jpg",
+            "./images/LVT_1005_6C_08.jpg"
           ]
         },
 
@@ -722,7 +722,7 @@
       document.getElementById('badge-promotion-count').innerText = promoList.length;
       document.getElementById('badge-banner-count').innerText = bannerList.length;
 
-      // 1) 상세페이지 카드 렌더링 (3열)
+      // 1) 상세페이지 카드 렌더링 (aspect-[4/3] 비율 적용으로 하단선 일직선 정렬)
       detailList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
@@ -730,7 +730,7 @@
         card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
         card.onclick = () => openViewer(proj);
         card.innerHTML = `
-          <div class="h-64 md:h-72 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
+          <div class="aspect-[4/3] w-full bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] relative flex items-center justify-center">
             <img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover" onerror="handleImageError(this, '${proj.title}')">
             <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
               <i class="fa-regular fa-image text-3xl mb-1 text-[#CBDCEB]"></i>
@@ -750,14 +750,14 @@
         detailsGrid.appendChild(card);
       });
 
-      // 2) 프로모션 기획전 카드 렌더링 (3열)
+      // 2) 프로모션 기획전 카드 렌더링
       promoList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const card = document.createElement('div');
         card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
         card.onclick = () => openViewer(proj);
         card.innerHTML = `
-          <div class="h-48 md:h-52 bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative">
+          <div class="aspect-[4/3] w-full bg-[#F8FAFC] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative">
             <img src="${displayThumb}" alt="${proj.title}" class="w-full h-full object-cover" onerror="handleImageError(this, '${proj.title}')">
             <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
               <i class="fa-regular fa-image text-2xl mb-1 text-[#CBDCEB]"></i>
@@ -776,7 +776,7 @@
         promotionsGrid.appendChild(card);
       });
 
-      // 3) 배너 컬렉션 카드 렌더링 (3열)
+      // 3) 배너 컬렉션 카드 렌더링
       bannerList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
@@ -784,7 +784,7 @@
         card.className = "pastel-card bg-white rounded-3xl overflow-hidden relative group cursor-pointer hover:shadow-lg transition";
         card.onclick = () => openViewer(proj);
         card.innerHTML = `
-          <div class="h-48 md:h-52 bg-[#2D2A3E] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative p-3">
+          <div class="aspect-[4/3] w-full bg-[#2D2A3E] overflow-hidden border-b-2.5 border-[#6C8299] flex items-center justify-center relative p-3">
             <img src="${displayThumb}" alt="${proj.title}" class="max-h-full max-w-full object-contain rounded-lg shadow-sm" onerror="handleImageError(this, '${proj.title}')">
             <div class="hidden flex-col items-center justify-center text-center p-4 text-[#8395A7]">
               <i class="fa-regular fa-image text-2xl mb-1 text-[#CBDCEB]"></i>
