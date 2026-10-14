@@ -259,7 +259,7 @@
     <section id="section-profile" class="pastel-card bg-white rounded-[28px] md:rounded-[32px] p-5 sm:p-7 md:p-12 relative overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start justify-between">
         
-        <!-- 좌측 소개 및 인적사항 (md:pt-[25px]로 프로필 사진 카드 상단과 수평 일치) -->
+        <!-- 좌측 소개 및 인적사항 -->
         <div class="flex-1 space-y-4 md:space-y-5 w-full md:pt-[25px]">
           <div>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-snug break-keep">
@@ -337,7 +337,7 @@
       </div>
     </section>
 
-    <!-- 2. 상세페이지 섹션 (3열 그리드 & 4:3 황금비율 고정) -->
+    <!-- 2. 상세페이지 섹션 (3열 그리드 & 4:3 비율 일치 썸네일 배너 적용) -->
     <section id="section-details" class="space-y-5 scroll-mt-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -440,14 +440,14 @@
 
       // 4. 프로젝트 작업물 목록
       projects: [
-        // ---------------- [카테고리 1: 상세페이지 (총 3종 - 대표 메인 컷 적용)] ----------------
-        // 1) 편백나무 호텔 침대
+        // ---------------- [카테고리 1: 상세페이지 (전용 썸네일 배너 적용)] ----------------
+        // 1) 편백나무 호텔 침대 (썸네일 배너: CSL_73_bed_b.jpg)
         {
           id: "detail_bed_01",
           type: "상세페이지",
           title: "동서가구, 편백나무 LED 수납 호텔 침대",
           desc: "편백나무 원목 질감 연출 및 LED 조명·수납 기능 디테일 컷, 규격(SS/K)·배송 안내 인포그래픽 제작",
-          thumbnail: "./images/CSL_73_bed_01.jpg",
+          thumbnail: "./images/CSL_73_bed_b.jpg",
           images: [
             "./images/CSL_73_bed_01.jpg",
             "./images/CSL_73_bed_02.gif",
@@ -458,13 +458,13 @@
             "./images/CSL_del_445566.jpg"
           ]
         },
-        // 2) 고무나무 원목 패브릭 쿠션 LED 수납 침대
+        // 2) 고무나무 원목 패브릭 쿠션 LED 수납 침대 (썸네일 배너: CSL_76_bed_b.jpg)
         {
           id: "detail_bed_02",
           type: "상세페이지",
           title: "동서가구, 고무나무 원목 패브릭 쿠션 LED 수납 침대",
           desc: "내추럴 원목 감성과 패브릭 헤드쿠션 조화, 3단계 조절 무드등·콘센트 기능 연출 및 수납 서랍 규격(SPEC) 인포그래픽 제작",
-          thumbnail: "./images/CSL_76_bed_01.jpg",
+          thumbnail: "./images/CSL_76_bed_b.jpg",
           images: [
             "./images/CSL_76_bed_01.jpg",
             "./images/CSL_76_bed_02.gif",
@@ -473,13 +473,13 @@
             "./images/CSL_76_bed_05.jpg"
           ]
         },
-        // 3) 고무나무 원목 수납형 흙·돌침대 & 돌소파
+        // 3) 고무나무 원목 수납형 흙·돌침대 & 돌소파 (썸네일 배너: LVT_1005_6_b.jpg)
         {
           id: "detail_stone_sofa_03",
           type: "상세페이지",
           title: "동서가구, 고무나무 원목 수납형 흙·돌침대 & 돌소파",
           desc: "고무나무 원목과 전통 온열 보료의 조화, 프레임 수납 기능 및 싱글·퀸·소파 라인업별 디테일 컷과 규격 인포그래픽 제작",
-          thumbnail: "./images/LVT_1005_6_01.jpg",
+          thumbnail: "./images/LVT_1005_6_b.jpg",
           images: [
             "./images/LVT_1005_6_01.jpg",
             "./images/LVT_1005_6_02.jpg",
@@ -722,7 +722,7 @@
       document.getElementById('badge-promotion-count').innerText = promoList.length;
       document.getElementById('badge-banner-count').innerText = bannerList.length;
 
-      // 1) 상세페이지 카드 렌더링 (aspect-[4/3] 비율 적용으로 하단선 일직선 정렬)
+      // 1) 상세페이지 카드 렌더링 (4:3 전용 배너 썸네일 적용)
       detailList.forEach(proj => {
         const displayThumb = proj.thumbnail || (proj.images && proj.images[0]) || '';
         const imgCount = proj.images ? proj.images.length : 0;
